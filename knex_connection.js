@@ -15,7 +15,7 @@
 //     },
 //   });
 
-// production
+// production ...
 const connection = require('knex')({
   production: {
     client: 'postgresql',
