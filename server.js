@@ -12,9 +12,11 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.post('/post-sudoku', async (req, res) => {
-    res.set({
-        'Access-Control-Allow-Origin': 'https://salty-mesa-67434.herokuapp.com',
-    });
+    // res.set({
+    //     'Access-Control-Allow-Origin': 'https://salty-mesa-67434.herokuapp.com',
+    // });
+    console.log('Request origin: ', req.origin);
+    res.header('Access-Control-Allow-Origin', 'https://salty-mesa-67434.herokuapp.com');
     const stringifyPuzzle = (puzzle) => {
         let stringified = '';
         let numberOfClues = 0;
