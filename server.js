@@ -13,14 +13,11 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
+// enables cross-origin requests
+// TODO: this is temporary solution, make it better by setting headers
 app.use(cors());
 
-app.post('/post-sudoku', async (req, res) => {
-    // res.set({
-    //     'Access-Control-Allow-Origin': 'https://salty-mesa-67434.herokuapp.com',
-    // });
-    // console.log('Request origin: ', req.origin);
-    // res.header('Access-Control-Allow-Origin', 'https://salty-mesa-67434.herokuapp.com');
+app.post('/api/post-sudoku', async (req, res) => {
     const stringifyPuzzle = (puzzle) => {
         let stringified = '';
         let numberOfClues = 0;
@@ -58,8 +55,7 @@ app.post('/post-sudoku', async (req, res) => {
 app.get('/api/database', async (req, res) => {
     try {
         const sudokus = await knex('sudoku').select();
-        console.log(sudokus.length);
-        console.log(sudokus);
+        console.log('Fetching database ...');
         res.status(200)
             .json({
                 sudokus,
