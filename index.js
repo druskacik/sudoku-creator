@@ -3,6 +3,8 @@ const knex = require('./knex_connection');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 
+const path = require('path');
+
 const cors = require('cors');
 
 const app = express();
@@ -16,6 +18,8 @@ app.use(bodyParser.urlencoded({
 // enables cross-origin requests
 // TODO: this is temporary solution, make it better by setting headers
 app.use(cors());
+
+app.use(express.static('client/build'));
 
 app.post('/api/post-sudoku', async (req, res) => {
     const stringifyPuzzle = (puzzle) => {
@@ -71,6 +75,10 @@ app.get('/api/database', async (req, res) => {
     }
     
 })
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'index.html'))
+  })
 
 const startServer = (port) => {
     app.listen(port, async () => {

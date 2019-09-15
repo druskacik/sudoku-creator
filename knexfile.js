@@ -14,6 +14,18 @@ module.exports = {
     }
   },
 
+  websupport: {
+    client: 'postgresql',
+    connection: {
+      host     : 'postgresql.websupport.sk',
+      user     : 'sudoku',
+      password : 'DancingLinks5',
+      database : 'sudoku',
+      port     : '5432',
+      charset  : 'utf8'
+    }
+  },
+
   staging: {
     client: 'mysql',
     connection: {
@@ -49,10 +61,3 @@ module.exports = {
   }
 
 };
-
-
-// host: process.env.DB_HOST,
-// database: process.env.DB_NAME,
-// user: process.env.DB_USER,
-// password: process.env.DB_PASS,
-// port: process.env.DB_PORT,
